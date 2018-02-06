@@ -19,5 +19,5 @@ wash a b c    t q   nothing        verify file a is created and has length zero
 wash a b c    c q   nothing        verify file a now has zero length
  (where file a exists)```
 
-[//]: # (flesh out this test plan by added a complete set of tests for one of the wash functions.)
+[//]: # (flesh out this test plan by adding a complete set of tests for one of the wash functions.)
 
