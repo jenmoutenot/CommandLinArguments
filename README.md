@@ -2,8 +2,6 @@
 
 ## Analysis
 
-## Design
-
 ## Test Plan
 
 Partial of test plan that tests the command line arguments
