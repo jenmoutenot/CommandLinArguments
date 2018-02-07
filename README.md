@@ -1,4 +1,6 @@
 # Wash
+Jen Moutenot
+CS 366
 
 ## Analysis
 
