@@ -9,7 +9,8 @@ This program called 'wash' will be useful in manipulating and organizing Mr. Kra
 1. Where do the files come from (a,b,c)?  
 2. How does the command 'm' for mode change the current file's access mode?
 3. How can we obtain the information on a file's last 100 bytes (or fewer if fewer exists) and displaying them using command 'l'?
-4.
+4. Are the files stored in an array or do we make the files? 
+5. What information is inside of the files that make up the last 100 bytes? 
 
 ## Test Plan
 
@@ -29,16 +30,21 @@ wash a b c    c q   nothing        verify file a now has zero length
  (where file a exists)```
 
 [//]: # Jen's Fleshed Out Black-Box Test Plan for 'r'
-```command  +   input  output          rationale
-no arguments	    nothing	     verify program starts up and shuts down
-wash a b c   r	    enter new name   verify program correctly renames the current file
+```command  +   input  output                 rationale
+no arguments	    nothing	       verify program starts up and shuts down
+wash a b c   r	    enter new name     verify program correctly renames the current file
 wash a b c   c r    contents of a
-wash a b c   d r
-wash a b c   u r
-wash a b c   t r
-wash a b c   a r
-wash a b c   l r
-wash a b c   m r
-wash a b c   x r 
-wash a b c   n r
-wash a b c   r q
+		    enter new name     verify program correctly gets contents to screen and asks to rename the file
+wash a b c   d r    enter destination
+		    enter new name     verify program correctly duplicates the current file, which creates a copy of the file, then asks to rename the current file
+wash a b c   u r    enter new name     verify program deletes the current file then asks to rename the current file
+wash a b c   t r    enter new name     verify program deletes contents of file then asks to rename the file
+wash a b c   a r    append location    
+		    enter new name     verify program appends the current file to another file, then asks to rename the current file
+wash a b c   l r    last 100 bytes
+                    enter new name     verify program displays last 100 bytes of the current file, then asks to rename the current file
+wash a b c   m r    enter chmod mode	
+		    enter new name     verify program changes the file's access mode, then asks to rename the current file
+wash a b c   x r    enter new name     verify program changes the current file's access time to the current time, then asks to rename the file
+wash a b c   n r    enter new name     verify program goes to the next file then asks to rename the current file
+wash a b c   r q    enter new name     verify program asks to rename the current file then quits after shuts down`
