@@ -12,15 +12,14 @@ const int BUF_SIZE = 512;
 
 void cat(char *file)
 {
-  FILE *fp;
-  //need to check for file error?
-  fp = fopen(file, "r");
-  char c;
-  c = fgetc(fp);
+  FILE *fp; //initialize file we are manipulating
+  fp = fopen(file, "r"); //fp is file that is open to read
+  char c;  
+  c = fgetc(fp);  
   while( c != EOF) //end of file
   {
-     printf("%c", c);
-     c = fgetc(fp);  //fp is file that is open to read
+     printf("%c", c); //printing the contents of the file
+     c = fgetc(fp); 
   }
 }
 
