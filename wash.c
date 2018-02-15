@@ -7,13 +7,26 @@
 
 
 const int BUF_SIZE = 512;
-
-
-
+/*
+void rename(const char *old, const char *new)
+{
+  gets_s(*old);
+  printf("Enter new name for file: ");
+  gets_s(*new);
+  if (rename(*old, *new) == 0 )
+  {
+    printf("%s has been renamed %s.\n", *old, *new);
+  }
+   else 
+  {
+    printf("Error\n");
+  }
+}
+*/
 void cat(char *file)
 {
   FILE *fp; //initialize file we are manipulating
-  fp = fopen(file, "r"); //fp is file that is open to read
+  fp = fopen(file, "r"); //fp is the file pointer
   char c;  
   c = fgetc(fp);  
   while( c != EOF) //end of file
