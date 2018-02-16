@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "unistd.h"
 #include "sys/types.h"
+#include "sys/stat.h"
 
 // This is my code
 // Jen Moutenot
@@ -12,21 +13,20 @@ const int BUF_SIZE = 512;
 /* purpose:
  * input:
  * returns:
-
-void truncate(char *file)
+*/
+void mode(char *file)
 {
-  char fn[] = "unlink.file";
-  if ((file = creat(fn, S_IWUSR)) < 0)
-    perror("creat() error");
-  else
+  char mode[] = "0777";
+  char buf[100] = "/home/hello.t";
+  int i;
+  i = strtol(mode, 0, 8);
+  if (chmod(buf,i) < 0(
   {
-    close(file_descriptor);
-    if (unlink(fn) != 0)
-      perror("unlink() error");
+    fprintf(stderr, "%s: error in chmod(%s, %s) - %d (%s)\n", argv[0], buf, mode, errno, strerror(errno));
+    exit(1);
   }
   
 }
-*/
 
 /* purpose:
  * input:
@@ -80,7 +80,7 @@ void rename_file(char *file_old)
   }
     else 
   {
-     printf("Error\n");
+    printf("Error\n");
   }
 }
 
@@ -140,9 +140,11 @@ int main(int argc, char *argv[])
       case 'u': unlink(*argv); break;
       case 't': truncate(*argv, 0); break;
       case 'a': append(*argv); break;
-    /*
+   /*  
       case 'l': last(*argv); break;
+   */
       case 'm': mode(*argv); break;
+   /*
       case 'x': time(*argv); break;
     */
       case 'n': argv++; break; 		//incrementing to the next file
