@@ -10,26 +10,60 @@
 
 const int BUF_SIZE = 512;
 
-/* purpose:
- * input:
- * returns:
+/* purpose: to change the current file's access mode
+ * input: the current file
+ * returns: nothing
 */
 void mode(char *file)
 {
-  char mode[] = "0777";
-  char buf[100] = "/home/hello.t";
-  int i;
-  i = strtol(mode, 0, 8);
-  if (chmod(buf,i) < 0(
+  char *new_mode;
+  printf("Enter access mode: \n");
+  scanf("%s", *new_mode);
+  FILE *fp = fopen(file, "w");
+  if (file == NULL)
+    perror("Can't open the file");
+  else
   {
-    fprintf(stderr, "%s: error in chmod(%s, %s) - %d (%s)\n", argv[0], buf, mode, errno, strerror(errno));
-    exit(1);
+    chmod(fp, new_mode);
   }
-  
+  close(file);
 }
 
-/* purpose:
- * input:
+/* purpose: to display the last 100 bytes, or fewer if fewer exist, of the current file
+ * input: the current file
+ * returns:
+*/
+void last(char *file)
+{
+  int last_bytes;
+  char *c;
+
+  FILE *fp = fopen(file_name, "r");
+  if ( file == NULL)
+    perror("Can't open the file");
+  else
+  {
+    fseek(file, -100, SEEK_END);
+    int i;
+    while (( i = fgetc(file)) != EOF)
+    {
+      printf("%s\n", i);
+    }
+    close(file);
+  }
+}
+
+/* purpose: to change the file's access time to the current time
+ * input: the current file
+ * returns:
+
+void time()
+{
+}
+*/
+
+/* purpose: to append the current file to another file
+ * input: the current file
  * returns:
 */
 void append(char *file) 
@@ -43,10 +77,12 @@ void append(char *file)
   while ((c = getc(fp1))!= EOF)
   {
     putc(c, fp2);
-  }  
+  }
+  close(file);
+  close(dest);  
 }
-/* purpose:
- * input:
+/* purpose: to duplicate the current file, which creates a copy of the file
+ * input: the current file
  * returns:
 */
 void duplicate(char *file)
@@ -62,10 +98,12 @@ void duplicate(char *file)
   {
     putc(c, fp2);
   }
+  close(file);
+  close(dest);
 }
 
-/* purpose:
- * input:
+/* purpose: to rename the current file
+ * input: the current file
  * returns:
 */
 void rename_file(char *file_old)
@@ -84,8 +122,8 @@ void rename_file(char *file_old)
   }
 }
 
-/* purpose:
- * input:
+/* purpose: to list the current file contents to /dev/tty
+ * input: the current file
  * returns:
 */
 void cat(char *file)
@@ -99,10 +137,11 @@ void cat(char *file)
      printf("%c", c); //printing the contents of the file
      c = fgetc(fp); 
   }
+  close(file);
 }
 
-/* purpose:
- * input:
+/* purpose: to clean up and organize Mr. Krabs' files using the program wash
+ * input: an array of files
  * returns:
 */
 
