@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
    /*
       case 'x': time(*argv); break;
     */
-      case 'n': argv++; break; 		//incrementing to the next file
+      case 'n': argv++; break;         //incrementing to the next file
       case 'q': return 0; break; 
     }
   }  
