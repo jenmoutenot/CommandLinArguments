@@ -3,6 +3,8 @@
 #include "unistd.h"
 #include "sys/types.h"
 #include "sys/stat.h"
+#include "utime.h"
+#include "sys/time.h"
 
 // This is my code
 // Jen Moutenot
@@ -15,56 +17,55 @@ const int BUF_SIZE = 512;
  * returns: nothing
 */
 void mode(char *file)
-{
-  char *new_mode;
+{ 
   printf("Enter access mode: \n");
-  scanf("%s", *new_mode);
-  FILE *fp = fopen(file, "w");
-  if (file == NULL)
-    perror("Can't open the file");
-  else
-  {
-    chmod(fp, new_mode);
-  }
-  close(file);
+  int new_mode;
+  scanf("%d", &new_mode);
+  chmod(file, new_mode);
 }
 
 /* purpose: to display the last 100 bytes, or fewer if fewer exist, of the current file
  * input: the current file
- * returns:
+ * returns: outputs last 100 bytes
 */
 void last(char *file)
 {
-  int last_bytes;
-  char *c;
-
-  FILE *fp = fopen(file_name, "r");
+  char c;
+  FILE *fp = fopen(file, "r");
   if ( file == NULL)
     perror("Can't open the file");
-  else
+  else 
   {
-    fseek(file, -100, SEEK_END);
-    int i;
-    while (( i = fgetc(file)) != EOF)
-    {
-      printf("%s\n", i);
+    fseek(fp, SEEK_END - 100, SEEK_END);
+    c = fgetc(fp);
+    while (c != EOF)
+    { 
+      printf("%c \n", c);
+      c = fgetc(fp);
     }
-    close(file);
   }
+  fclose(fp);
 }
 
 /* purpose: to change the file's access time to the current time
  * input: the current file
- * returns:
-
-void time()
-{
-}
+ * returns: outputs new access time (current time)
 */
+void time(char *file)
+{
+  int n_time;
+  struct utimbuf ubuf;
+  printf("Enter new access time: ");
+  scanf("%d", &n_time);
+  ubuf.actime = n_time;
+  ubuf.modtime = n_time;
+  utime(file, &ubuf);
+  
+}
 
 /* purpose: to append the current file to another file
  * input: the current file
- * returns:
+ * returns: nothing
 */
 void append(char *file) 
 {
@@ -82,12 +83,12 @@ void append(char *file)
   {
     putc(c, fp2);
   }
-  close(file);
-  close(dest);  
+  fclose(fp1);
+  fclose(fp2);  
 }
 /* purpose: to duplicate the current file, which creates a copy of the file
  * input: the current file
- * returns:
+ * returns: nothing
 */
 void duplicate(char *file)
 {
@@ -106,13 +107,13 @@ void duplicate(char *file)
   {
     putc(c, fp2); //put the contents inside the new file
   }
-  close(file);
-  close(dest);
+  fclose(fp1);
+  fclose(fp2);
 }
 
 /* purpose: to rename the current file
  * input: the current file
- * returns:
+ * returns: nothing
 */
 void rename_file(char *file_old)
 {
@@ -132,7 +133,7 @@ void rename_file(char *file_old)
 
 /* purpose: to list the current file contents to /dev/tty
  * input: the current file
- * returns:
+ * returns: the contents of the file
 */
 void cat(char *file)
 {
@@ -147,12 +148,12 @@ void cat(char *file)
      printf("%c", c); //printing the contents of the file
      c = fgetc(fp); 
   }
-  close(file);
+  fclose(fp);
 }
 
 /* purpose: to clean up and organize Mr. Krabs' files using the program wash
  * input: an array of files
- * returns:
+ * returns: the file name, and asks for a command
 */
 
 int main(int argc, char *argv[])
@@ -189,13 +190,9 @@ int main(int argc, char *argv[])
       case 'u': unlink(*argv); break;
       case 't': truncate(*argv, 0); break;
       case 'a': append(*argv); break;
-   /*  
       case 'l': last(*argv); break;
-   */
       case 'm': mode(*argv); break;
-   /*
       case 'x': time(*argv); break;
-    */
       case 'n': argv++; break;         //incrementing to the next file
       case 'q': return 0; break; 
     }
