@@ -69,11 +69,15 @@ void time()
 void append(char *file) 
 {
   char c;
-  char dest[BUF_SIZE];
-  printf("Enter file you would like to append to: \n");
-  scanf("%s", dest);
-  FILE *fp1 = fopen(file, "r");
-  FILE *fp2 = fopen(dest, "a");
+  char dest[BUF_SIZE]; 
+  printf("Enter file destination you would like to append to: \n");
+  scanf("%s", dest); //scanning the user's input
+  FILE *fp1 = fopen(file, "r"); //reading the current file
+  FILE *fp2 = fopen(dest, "a"); //appending into the destination
+  if (file == NULL)
+    perror("Can't open the file");
+  if (dest == NULL)
+    perror("Can't open the file");
   while ((c = getc(fp1))!= EOF)
   {
     putc(c, fp2);
@@ -91,12 +95,16 @@ void duplicate(char *file)
   char dest[BUF_SIZE];
   
   printf("Enter destination name: \n");
-  scanf("%s", dest);
-  FILE *fp1 = fopen(file, "r");
-  FILE *fp2 = fopen(dest, "w");
-  while ((c = getc(fp1))!= EOF)
+  scanf("%s", dest); //scanning the user's input
+  FILE *fp1 = fopen(file, "r");  //reading the current file
+  FILE *fp2 = fopen(dest, "w");  //writing the copy into the file destination
+  if (file == NULL)
+    perror("Can't open the file");
+  if (dest == NULL)
+    perror("Can't open the file");
+  while ((c = getc(fp1))!= EOF)  // copy the contents until you get to the end of the file
   {
-    putc(c, fp2);
+    putc(c, fp2); //put the contents inside the new file
   }
   close(file);
   close(dest);
@@ -111,14 +119,14 @@ void rename_file(char *file_old)
   char file_new[BUF_SIZE]; //technically a pointer
   
   printf("Enter new name for file: \n");
-  scanf("%s", file_new);
+  scanf("%s", file_new);  //scanning the user's input
   if (rename(file_old, file_new) == 0 ) //file_old is still a pointer, was not dereferenced
   {
     printf("%s has been renamed %s.\n", file_old, file_new); //passing through strings
   }
     else 
   {
-    printf("Error\n");
+    perror("Error\n");
   }
 }
 
@@ -130,6 +138,8 @@ void cat(char *file)
 {
   FILE *fp; //initialize file we are manipulating
   fp = fopen(file, "r"); //fp is the file pointer
+  if (file == NULL)
+    perror("Can't open the file");
   char c;  
   c = fgetc(fp);  
   while(c != EOF) //end of file
