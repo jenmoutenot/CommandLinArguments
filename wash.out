@@ -1,0 +1,249 @@
+Script started on Fri 16 Feb 2018 11:13:46 AM EST
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt .txt [K[K[K[K[Kb.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt exit[Kwash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:n
+
+file b.txt: command:n
+
+file c.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:c
+This is file a
+
+file a.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:c t
+
+file a.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:c
+
+file a.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:r
+Enter new name for file: 
+ca  rr  rr.txt
+a.txt has been renamed rr.txt.
+
+file a.txt: command:
+file a.txt: command:c
+Segmentation fault (core dumped)
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash a.txt b.txt c.txt 
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file a.txt: command:r
+Enter new name for file: 
+kat.txt
+Error
+: No such file or directory
+
+file a.txt: command:
+file a.txt: command:n
+
+file b.txt: command:d
+Enter destination name: 
+new.txt
+
+file b.txt: command:
+file b.txt: command:r
+Enter new name for file: 
+flower.txt
+b.txt has been renamed flower.txt.
+
+file b.txt: command:
+file b.txt: command:n
+
+file c.txt: command:u
+
+file c.txt: command:r
+Enter new name for file: 
+c kewl.txt
+Error
+: No such file or directory
+
+file c.txt: command:
+file c.txt: command:n
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wahs [K[K[Ksh[K[K[K[Kls
+a.out  cc.txt  dd.txt  flower.txt  hello.txt  Makefile	new.txt  README.md  rr.txt  wash  wash.c  wash.out
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash cc.txt dd.txt flower.txt
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file cc.txt: command:t
+
+file cc.txt: command:n
+
+file dd.txt: command:a
+Enter file destination you would like to append to: 
+flower.txt
+
+file dd.txt: command:
+file dd.txt: command:l
+
+file dd.txt: command:n
+
+file flower.txt: command:l
+T 
+h 
+i 
+s 
+  
+i 
+s 
+  
+f 
+i 
+l 
+e 
+  
+b 
+
+ 
+
+file flower.txt: command:m
+Enter access mode: 
+a
+
+file flower.txt: command:Enter file destination you would like to append to: 
+dd.txt
+
+file flower.txt: command:
+file flower.txt: command:n
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash cc.txt dd.txt flower.txt[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+a.out  cc.txt  dd.txt  flower.txt  hello.txt  Makefile	new.txt  README.md  rr.txt  wash  wash.c  wash.out
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ cc.txt dd.txt flower.txt
+bash: ./cc.txt: Permission denied
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ wash cc.txt dd.txt flower.txt
+
+Enter in one of the following commands:
+ ’c’ cat, list the current file to /dev/tty
+ ’d’ duplicate the current file (duplicate)
+ ’r’ rename the current file
+ ’u’ unlink the current file
+ ’t’ truncate the current file
+ ’a’ append the current file to another file
+ ’l’ last, display the last 100 bytes of the current file
+ ’m’ mode, change the current file’s access permissions
+ ’x’ change the current file’s access time to the current time 
+ ’n’ next, goto the next file 
+ ’q’ quit
+
+file cc.txt: command:x
+Enter new access time: 4567    500
+
+file cc.txt: command:
+file cc.txt: command:n
+
+file dd.txt: command:q
+jamoutenot@snoopy:~/cs366/wash-jenmoutenot$ exit
+exit
+
+Script done on Fri 16 Feb 2018 11:18:57 AM EST
