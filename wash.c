@@ -18,10 +18,10 @@ const int BUF_SIZE = 512;
 */
 void mode(char *file)
 { 
-  printf("Enter access mode: \n");
-  int new_mode;
-  scanf("%d", &new_mode);
-  chmod(file, new_mode);
+  printf("Enter access mode: \n"); //can read write...etc
+  int new_mode;  
+  scanf("%d", &new_mode);  // scanning the user's input
+  chmod(file, new_mode);   // utilizing chmod function to change access mode for user
 }
 
 /* purpose: to display the last 100 bytes, or fewer if fewer exist, of the current file
@@ -36,7 +36,7 @@ void last(char *file)
     perror("Can't open the file");
   else 
   {
-    fseek(fp, SEEK_END - 100, SEEK_END);
+    fseek(fp, SEEK_END - 100, SEEK_END);  //sets the file position of the stream to the given offset
     c = fgetc(fp);
     while (c != EOF)
     { 
@@ -54,12 +54,12 @@ void last(char *file)
 void time(char *file)
 {
   int n_time;
-  struct utimbuf ubuf;
+  struct utimbuf ubuf; //creating struct to hold the access time
   printf("Enter new access time: ");
   scanf("%d", &n_time);
-  ubuf.actime = n_time;
-  ubuf.modtime = n_time;
-  utime(file, &ubuf);
+  ubuf.actime = n_time;  //actual time
+  ubuf.modtime = n_time; // mofified time
+  utime(file, &ubuf);  //utilizing utime function to change access and modification times
   
 }
 
@@ -117,9 +117,8 @@ void duplicate(char *file)
 */
 void rename_file(char *file_old)
 {
-  char file_new[BUF_SIZE]; //technically a pointer
-  
   printf("Enter new name for file: \n");
+  char file_new[BUF_SIZE]; //technically a pointer
   scanf("%s", file_new);  //scanning the user's input
   if (rename(file_old, file_new) == 0 ) //file_old is still a pointer, was not dereferenced
   {
@@ -188,13 +187,13 @@ int main(int argc, char *argv[])
       case 'd': duplicate(*argv); break;
       case 'r': rename_file(*argv); break;
       case 'u': unlink(*argv); break;
-      case 't': truncate(*argv, 0); break;
+      case 't': truncate(*argv, 0); break;  //truncating file by making the contents 0
       case 'a': append(*argv); break;
       case 'l': last(*argv); break;
       case 'm': mode(*argv); break;
       case 'x': time(*argv); break;
       case 'n': argv++; break;         //incrementing to the next file
-      case 'q': return 0; break; 
+      case 'q': return 0; break;       // quitting the program by returning 0
     }
   }  
 
