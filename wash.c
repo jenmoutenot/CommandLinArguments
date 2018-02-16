@@ -1,6 +1,8 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "unistd.h"
+#include "sys/types.h"
+
 // This is my code
 // Jen Moutenot
 // CS366
@@ -10,12 +12,21 @@ const int BUF_SIZE = 512;
 /* purpose:
  * input:
  * returns:
-*/
-void unlink(char *file)
+
+void truncate(char *file)
 {
-  
+  char fn[] = "unlink.file";
+  if ((file = creat(fn, S_IWUSR)) < 0)
+    perror("creat() error");
+  else
+  {
+    close(file_descriptor);
+    if (unlink(fn) != 0)
+      perror("unlink() error");
+  }
   
 }
+*/
 
 /* purpose:
  * input:
@@ -126,10 +137,8 @@ int main(int argc, char *argv[])
       case 'c': cat(*argv); break;
       case 'd': duplicate(*argv); break;
       case 'r': rename_file(*argv); break;
-    /*
       case 'u': unlink(*argv); break;
-      case 't': truncate(*argv); break;
-    */
+      case 't': truncate(*argv, 0); break;
       case 'a': append(*argv); break;
     /*
       case 'l': last(*argv); break;
