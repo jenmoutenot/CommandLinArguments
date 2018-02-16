@@ -21,10 +21,10 @@ void mode(char *file)
   printf("Enter access mode: \n"); //can read write...etc
   int new_mode;  
   scanf("%d", &new_mode);  // scanning the user's input
-  chmod(file, new_mode);   // utilizing chmod function to change access mode for user
+  chmod(file, new_mode);   // change access mode for user
 }
 
-/* purpose: to display the last 100 bytes, or fewer if fewer exist, of the current file
+/* purpose: to display the last 100 bytes of the current file
  * input: the current file
  * returns: outputs last 100 bytes
 */
@@ -36,7 +36,7 @@ void last(char *file)
     perror("Can't open the file");
   else 
   {
-    fseek(fp, SEEK_END - 100, SEEK_END);  //sets the file position of the stream to the given offset
+    fseek(fp, SEEK_END - 100, SEEK_END);  //sets the file position to the given offset
     c = fgetc(fp);
     while (c != EOF)
     { 
@@ -59,7 +59,7 @@ void time(char *file)
   scanf("%d", &n_time);
   ubuf.actime = n_time;  //actual time
   ubuf.modtime = n_time; // mofified time
-  utime(file, &ubuf);  //utilizing utime function to change access and modification times
+  utime(file, &ubuf);  //utilizing utime function to change access, mod times
   
 }
 
@@ -103,7 +103,7 @@ void duplicate(char *file)
     perror("Can't open the file");
   if (dest == NULL)
     perror("Can't open the file");
-  while ((c = getc(fp1))!= EOF)  // copy the contents until you get to the end of the file
+  while ((c = getc(fp1))!= EOF)  // copy the contents until you get to eof
   {
     putc(c, fp2); //put the contents inside the new file
   }
@@ -120,7 +120,7 @@ void rename_file(char *file_old)
   printf("Enter new name for file: \n");
   char file_new[BUF_SIZE]; //technically a pointer
   scanf("%s", file_new);  //scanning the user's input
-  if (rename(file_old, file_new) == 0 ) //file_old is still a pointer, was not dereferenced
+  if (rename(file_old, file_new) == 0 ) //file_old is still a pointer
   {
     printf("%s has been renamed %s.\n", file_old, file_new); //passing through strings
   }
@@ -175,19 +175,18 @@ int main(int argc, char *argv[])
   printf(" ’n’ next, goto the next file \n");
   printf(" ’q’ quit\n");
   
-  for(argv++; *argv != NULL; )   //incrementing argv(the array of files) to go to the next file
+  for(argv++; *argv != NULL; )   //incrementing argv(the array of files)
   {
     char command[BUF_SIZE];
     printf("\nfile %s: command:", *argv);
     fgets(command, BUF_SIZE, stdin);
-
     switch (*command)
     {
       case 'c': cat(*argv); break;
       case 'd': duplicate(*argv); break;
       case 'r': rename_file(*argv); break;
       case 'u': unlink(*argv); break;
-      case 't': truncate(*argv, 0); break;  //truncating file by making the contents 0
+      case 't': truncate(*argv, 0); break;  //truncating, making the contents 0
       case 'a': append(*argv); break;
       case 'l': last(*argv); break;
       case 'm': mode(*argv); break;
@@ -196,7 +195,5 @@ int main(int argc, char *argv[])
       case 'q': return 0; break;       // quitting the program by returning 0
     }
   }  
-
   return 1; //returning off of 'n' to quit
-  
 }
