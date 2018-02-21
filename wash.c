@@ -33,7 +33,15 @@ void last(char *file)
   char c;
   FILE *fp = fopen(file, "r");
   if ( file == NULL)
-    perror("Can't open the file");
+    perror("fopen");
+    return -1;
+  if (fseek(file, -TAIL_LENGTH, SEEK_END) < 0  && fseek(file, 0, SEEK_SET) < 0)
+    perror("fseek");
+    fclose(file);
+    return -1;
+  if (fopen("dev/tty", "w")
+    perror("dev/tty")
+    return -1;
   else 
   {
     fseek(fp, SEEK_END - 100, SEEK_END);  //sets the file position to the given offset
@@ -44,7 +52,7 @@ void last(char *file)
       c = fgetc(fp);
     }
   }
-  fclose(fp);
+  fclose(file);
 }
 
 /* purpose: to change the file's access time to the current time
